@@ -3,6 +3,8 @@ Shader "Unlit/WaterSimV1"
     Properties
     {
         _WaterColor ("Water Color", Color) = (1, 1, 1, 1)
+        _WaveStrength ("Wave Strength", Float) = 0.1
+        _WaveSpeed ("Wave Speed", Float) = 1.0
     }
     SubShader
     {
@@ -31,10 +33,20 @@ Shader "Unlit/WaterSimV1"
 
             float4 _WaterColor;
 
+            float _WaveStrength;
+            float _WaveSpeed;
+
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
+
+                float wave = sin(v.vertex.x + _Time.y * _WaveSpeed) * _WaveStrength;
+                o.vertex.y += wave;
+
+                o.vertex = mul(UNITY_MATRIX_V, o.vertex);
+				o.vertex = mul(UNITY_MATRIX_P, o.vertex);
+
                 o.uv = v.uv;
                 return o;
             }
