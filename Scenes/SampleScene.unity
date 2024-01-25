@@ -318,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 5388261058389818862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.38, z: 0}
+  m_LocalPosition: {x: -0, y: 1.09, z: 0}
   m_LocalScale: {x: 8.0446, y: 8.0446, z: 8.0446}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -406,12 +406,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waveAmplitude: 0.315
-  waveSpeed: 0.4
-  waveLength: 2.01
+  waveAmplitude: 0.394
+  waveSpeed: 0.24
+  waveLength: 1.98
   waterColor: {r: 0.47138664, g: 0.8454745, b: 0.9339623, a: 1}
-  waveDirection: {x: 1, y: 0, z: 0, w: 0}
-  wavesDifference: -0.89
+  waveDirection: {x: 1, y: 1, z: 0, w: 0}
+  wavesDifference: -0.37
   wavesIterations: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
