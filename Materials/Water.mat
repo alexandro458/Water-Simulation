@@ -29,8 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _WaveSpeed: 1.76
-    - _WaveStrength: 0.35
+    - _WaveSpeed: 0.4
+    - _WaveStrength: 1.67
     m_Colors:
-    - _WaterColor: {r: 0.3726415, g: 0.56844693, b: 1, a: 1}
+    - _WaterColor: {r: 0.47138664, g: 0.8454745, b: 0.9339623, a: 1}
   m_BuildTextureStacks: []
