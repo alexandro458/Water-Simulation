@@ -9,7 +9,7 @@ Shader "Unlit/WaterSimV1"
         Tags { "RenderType"="Opaque" }
         LOD 100
 
-        Cull Off
+        //Cull Off
 
         Pass
         {
@@ -18,17 +18,22 @@ Shader "Unlit/WaterSimV1"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "Lighting.cginc"
 
             struct appdata
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 normal : NORMAL;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                float3 normal : NORMAL;
+                float3 worldPos : TEXCOORD1;
+                float wave : TEXCOORD2;
             };
 
             float4 _WaterColor;
@@ -50,6 +55,8 @@ Shader "Unlit/WaterSimV1"
                 return wave;
             }
 
+
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -63,16 +70,49 @@ Shader "Unlit/WaterSimV1"
                 }
                 o.vertex.y += wave;
 
+                o.wave = wave;
+
+
+                o.worldPos = o.vertex.xyz;
+
                 o.vertex = mul(UNITY_MATRIX_V, o.vertex);
 				o.vertex = mul(UNITY_MATRIX_P, o.vertex);
 
                 o.uv = v.uv;
+                o.normal = UnityObjectToWorldNormal(v.normal);
                 return o;
+            }
+
+            fixed3 calcLight(float4 albedo, float3 normal, float3 worldPos)
+            {
+                //diffuse
+                float diffuse = saturate(dot(normal, _WorldSpaceLightPos0));
+
+                //specular
+                float3 reflectDir = reflect(-normalize(_WorldSpaceLightPos0), normal);
+                float3 viewDir = normalize(_WorldSpaceCameraPos - worldPos);
+                float3 halfVec = normalize(_WorldSpaceLightPos0 + viewDir);
+                float specular = max(dot(reflectDir , viewDir), 0.0);
+
+                specular = pow(specular * diffuse, 20); //_Glossiness
+
+                fixed4 col = albedo * ((diffuse + specular) * _LightColor0 + unity_AmbientSky);
+                return col.xyz;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = _WaterColor;
+
+                float3 normal = normalize(float3(-ddx(i.wave), 0, -ddy(i.wave)));
+
+                normal = 0.5 + 0.5 * normal;
+
+                //  normal = UnityObjectToWorldNormal(normal);
+
+                col = float4(calcLight(col, normal.xyz, i.worldPos), 1.0);
+
+                //col = float4(normal.xy, 0.0, 1.0);
 
                 return col;
             }
