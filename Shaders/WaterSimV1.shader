@@ -2,14 +2,15 @@ Shader "Unlit/WaterSimV1"
 {
     Properties
     {
-
+        _Transparency("Transparency", Range(0.0, 1.0)) = 0.5
+        _Glossiness("Glossiness", Float) = 100.0
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
 
-        //Cull Off
+        Cull Off
 
         Pass
         {
@@ -19,6 +20,9 @@ Shader "Unlit/WaterSimV1"
 
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+
+            float _Transparency;
+            float _Glossiness;
 
             struct appdata
             {
@@ -33,7 +37,6 @@ Shader "Unlit/WaterSimV1"
                 float4 vertex : SV_POSITION;
                 float3 normal : NORMAL;
                 float3 worldPos : TEXCOORD1;
-                float wave : TEXCOORD2;
             };
 
             float4 _WaterColor;
@@ -55,23 +58,22 @@ Shader "Unlit/WaterSimV1"
                 return wave;
             }
 
-
+            float WaveResult(float2 uv)
+            {
+                float wave = 0;
+                for (int i = 0; i < _WavesIterations; i++) {
+                    float diff = _WavesDifference * i;
+                    wave += WaveCalculation(float2(uv.xy), _Time.y + diff * 2, _WaveAmplitude + diff, _WaveLenght + diff);
+                }
+                return wave;
+            }
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
-
-                float wave = 0;
-
-                for (int i = 0; i < _WavesIterations; i++) {
-                    float diff = _WavesDifference * i;
-                    wave += WaveCalculation(float2(o.vertex.xz), _Time.y + diff * 2, _WaveAmplitude + diff, _WaveLenght + diff);
-                }
-                o.vertex.y += wave;
-
-                o.wave = wave;
-
+                
+                o.vertex.y += WaveResult(v.uv);
 
                 o.worldPos = o.vertex.xyz;
 
@@ -94,9 +96,9 @@ Shader "Unlit/WaterSimV1"
                 float3 halfVec = normalize(_WorldSpaceLightPos0 + viewDir);
                 float specular = max(dot(reflectDir , viewDir), 0.0);
 
-                specular = pow(specular * diffuse, 20); //_Glossiness
+                specular = pow(specular * diffuse, _Glossiness);
 
-                fixed4 col = albedo * ((diffuse + specular) * _LightColor0 + unity_AmbientSky);
+                fixed4 col = albedo * ((diffuse * _LightColor0) + specular + unity_AmbientSky);
                 return col.xyz;
             }
 
@@ -104,13 +106,15 @@ Shader "Unlit/WaterSimV1"
             {
                 fixed4 col = _WaterColor;
 
-                float3 normal = normalize(float3(-ddx(i.wave), 0, -ddy(i.wave)));
+
+                float wave = WaveResult(i.uv.xy);
+                float3 normal = normalize(float3(-ddx(wave), 0, -ddy(wave)));
 
                 normal = 0.5 + 0.5 * normal;
 
-                //  normal = UnityObjectToWorldNormal(normal);
+                //normal = UnityObjectToWorldNormal(normal);
 
-                col = float4(calcLight(col, normal.xyz, i.worldPos), 1.0);
+                col = float4(calcLight(col, normal.xyz, i.worldPos), _Transparency);
 
                 //col = float4(normal.xy, 0.0, 1.0);
 

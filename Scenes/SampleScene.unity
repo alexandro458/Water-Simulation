@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43188804, g: 0.46768266, b: 0.5015055, a: 1}
+  m_IndirectSpecularColor: {r: 0.4512722, g: 0.5000861, b: 0.56869906, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.9785181, y: -0.12011994, z: -0.13974363, w: 0.09244041}
+  m_LocalRotation: {x: 0.8463144, y: 0.07111763, z: -0.48108545, w: 0.21737316}
   m_LocalPosition: {x: 5.96, y: 4.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 171.52701, y: 17.395004, z: 15.294998}
+  m_LocalEulerAnglesHint: {x: 154.128, y: 60.532997, z: 5.6620026}
 --- !u!1 &870096549
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 870096552}
   - component: {fileID: 870096551}
   - component: {fileID: 870096550}
+  - component: {fileID: 870096554}
   m_Layer: 0
   m_Name: sphere
   m_TagString: Untagged
@@ -277,7 +278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f56ec4fe6e3abc489dbc9de94f98fb2, type: 2}
+  - {fileID: 2100000, guid: 0ce0da6f9797715499c778be88c5eec0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -322,6 +323,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870096554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870096549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c02dfbf655946a44bf4563d7d7d634c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateStatics: 1
+  waveAmplitude: 0
+  waveSpeed: 0.2
+  waveLength: 0.2
+  waterColor: {r: 0.27687788, g: 0.71969783, b: 0.9622642, a: 1}
+  waveDirection: {x: 1, y: 0, z: 0, w: 0}
+  wavesDifference: 0.2
+  wavesIterations: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,11 +532,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waveAmplitude: 0.158
+  waveAmplitude: 0.167
   waveSpeed: 0.1
-  waveLength: 0.64
-  waterColor: {r: 0.47138664, g: 0.8454745, b: 0.9339623, a: 1}
-  waveDirection: {x: 1, y: 1, z: 0, w: 0}
+  waveLength: 0.13
+  waterColor: {r: 0.31305623, g: 0.8642506, b: 0.990566, a: 1}
+  waveDirection: {x: 1, y: 0, z: 0, w: 0}
   wavesDifference: 0.2
   wavesIterations: 2
 --- !u!1660057539 &9223372036854775807
