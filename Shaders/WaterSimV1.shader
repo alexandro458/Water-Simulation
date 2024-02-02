@@ -52,7 +52,9 @@ Shader "Unlit/WaterSimV1"
             {
                 float w = 2 / waveLength;
                 float phase = _WaveSpeed * w;
-                float directionDot = dot(_WaveDirection, float4(pos, 0, 0));
+                float2 center = float2(0.5, 0.5);
+                float2 direction = (pos - center) / (abs(pos - center));
+                float directionDot = dot(_WaveDirection.xy, float4(pos, 0, 0));
 
                 float wave = amplitude * sin(directionDot * w + time * phase);
                 return wave;
