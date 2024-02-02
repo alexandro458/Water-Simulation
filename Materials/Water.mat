@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - _Glossiness: 209.5
     - _Transparency: 1
-    - _WaveSpeed: 0.1
+    - _WaveSpeed: 0.07
     - _WaveStrength: 1.67
     m_Colors:
     - _WaterColor: {r: 0.31305623, g: 0.8642506, b: 0.990566, a: 1}

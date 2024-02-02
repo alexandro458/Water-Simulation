@@ -18,6 +18,9 @@ public class WaterController : MonoBehaviour
 
     public float wavesDifference = 1.0f;
 
+    [Range(0, 1)]
+    public float steepness = 1.0f;
+
     public int wavesIterations = 2;
 
     private Material waterMaterial;
@@ -30,6 +33,7 @@ public class WaterController : MonoBehaviour
         waterMaterial.SetFloat("_WaveSpeed", waveSpeed);
         waterMaterial.SetFloat("_WaveLenght", waveLength);
         waterMaterial.SetFloat("_WavesDifference", wavesDifference);
+        waterMaterial.SetFloat("_Steepness", steepness);
         waterMaterial.SetInt("_WavesIterations", wavesIterations);
         waterMaterial.SetVector("_WaveDirection", waveDirection);
         waterMaterial.SetColor("_WaterColor", waterColor);
@@ -43,6 +47,7 @@ public class WaterController : MonoBehaviour
             waterMaterial.SetFloat("_WaveSpeed", waveSpeed);
             waterMaterial.SetFloat("_WaveLenght", waveLength);
             waterMaterial.SetFloat("_WavesDifference", wavesDifference);
+            waterMaterial.SetFloat("_Steepness", steepness);
             waterMaterial.SetInt("_WavesIterations", wavesIterations);
             waterMaterial.SetVector("_WaveDirection", waveDirection);
             waterMaterial.SetColor("_WaterColor", waterColor);
