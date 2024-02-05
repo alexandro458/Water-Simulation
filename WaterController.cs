@@ -6,22 +6,26 @@ using UnityEngine;
 public class WaterController : MonoBehaviour
 {
     public bool updateStatics = true;
-
-    [Range(0, 2)]
-    public float waveAmplitude = 0.1f;
-
-    public float waveSpeed = 1.0f;
-    public float waveLength = 1.0f;
     public Color waterColor = Color.blue;
 
-    public Vector4 waveDirection = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+    [Header("Wave A")]
 
-    public float wavesDifference = 1.0f;
-
+    public float waveLengthA = 1.0f;
+    public Vector4 waveDirectionA = new Vector2(1.0f, 0.0f);
     [Range(0, 1)]
-    public float steepness = 1.0f;
+    public float steepnessA = 1.0f;
 
-    public int wavesIterations = 2;
+    [Header("Wave B")]
+    public float waveLengthB = 1.0f;
+    public Vector4 waveDirectionB = new Vector2(1.0f, 0.0f);
+    [Range(0, 1)]
+    public float steepnessB = 1.0f;
+
+    [Header("Wave C")]
+    public float waveLengthC = 1.0f;
+    public Vector4 waveDirectionC = new Vector2(1.0f, 0.0f);
+    [Range(0, 1)]
+    public float steepnessC = 1.0f;
 
     private Material waterMaterial;
 
@@ -29,13 +33,13 @@ public class WaterController : MonoBehaviour
     {
         waterMaterial = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
 
-        waterMaterial.SetFloat("_WaveAmplitude", waveAmplitude);
-        waterMaterial.SetFloat("_WaveSpeed", waveSpeed);
-        waterMaterial.SetFloat("_WaveLenght", waveLength);
-        waterMaterial.SetFloat("_WavesDifference", wavesDifference);
-        waterMaterial.SetFloat("_Steepness", steepness);
-        waterMaterial.SetInt("_WavesIterations", wavesIterations);
-        waterMaterial.SetVector("_WaveDirection", waveDirection);
+        Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
+        Vector4 waveB = new Vector4(waveDirectionB.x, waveDirectionB.y, steepnessB, waveLengthB);
+        Vector4 waveC = new Vector4(waveDirectionC.x, waveDirectionC.y, steepnessC, waveLengthC);
+
+        waterMaterial.SetVector("_WaveA", waveA);
+        waterMaterial.SetVector("_WaveB", waveB);
+        waterMaterial.SetVector("_WaveC", waveC);
         waterMaterial.SetColor("_WaterColor", waterColor);
     }
 
@@ -43,13 +47,13 @@ public class WaterController : MonoBehaviour
     {
         if (updateStatics)
         {
-            waterMaterial.SetFloat("_WaveAmplitude", waveAmplitude);
-            waterMaterial.SetFloat("_WaveSpeed", waveSpeed);
-            waterMaterial.SetFloat("_WaveLenght", waveLength);
-            waterMaterial.SetFloat("_WavesDifference", wavesDifference);
-            waterMaterial.SetFloat("_Steepness", steepness);
-            waterMaterial.SetInt("_WavesIterations", wavesIterations);
-            waterMaterial.SetVector("_WaveDirection", waveDirection);
+            Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
+            Vector4 waveB = new Vector4(waveDirectionB.x, waveDirectionB.y, steepnessB, waveLengthB);
+            Vector4 waveC = new Vector4(waveDirectionC.x, waveDirectionC.y, steepnessC, waveLengthC);
+
+            waterMaterial.SetVector("_WaveA", waveA);
+            waterMaterial.SetVector("_WaveB", waveB);
+            waterMaterial.SetVector("_WaveC", waveC);
             waterMaterial.SetColor("_WaterColor", waterColor);
         }
     }

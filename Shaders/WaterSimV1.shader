@@ -41,53 +41,53 @@ Shader "Unlit/WaterSimV1"
 
             float4 _WaterColor;
 
-            float _WaveAmplitude, _WaveSpeed, _WaveLenght, _Steepness;
-            float4 _WaveDirection;
+            float4 _WaveA, _WaveB, _WaveC;
 
-            float _WavesDifference;
+            float3 GerstnerWave (
+			float4 wave, float3 p, inout float3 tangent, inout float3 binormal
+		    ) {
+		        float steepness = wave.z;
+		        float wavelength = wave.w;
+		        float k = 2 * UNITY_PI / wavelength;
+			    float c = sqrt(9.8 / k);
+			    float2 d = normalize(wave.xy);
+			    float f = k * (dot(d, p.xz) - c * _Time.y);
+			    float a = steepness / k;
 
-            int _WavesIterations;
-
-            float3 WaveCalculation(float2 pos, float time, float amplitude, float waveLength)
-            {
-                float2 center = float2(0.5, 0.5);
-                float2 direction = (pos - center) / (abs(pos - center));
-                
-                float w = 2 / waveLength;
-                float phase = _WaveSpeed * w;
-                
-                float2 waveAlpha = cos((w * _WaveDirection.xy * pos) + (time * phase));
-
-                float waveX = dot(_WaveDirection.x, waveAlpha);
-                float waveY = dot(_WaveDirection.y, waveAlpha);
-
-                float amplitudeSteep = amplitude * _Steepness;
-
-                float2 wave = float2(dot(amplitudeSteep, waveX), dot(amplitudeSteep, waveY));
-
-                float waveZ = amplitude * sin(w * _WaveDirection.xy * pos + (time * phase));
-
-                float3 finalWave = float3(wave.xy, waveZ);
-                return finalWave;
-            }
-
-            float3 WaveResult(float2 uv)
-            {
-                float3 wave = float3(0, 0, 0);
-                for (int i = 0; i < _WavesIterations; i++) {
-                    float diff = _WavesDifference * i;
-                    wave.y += WaveCalculation(float2(uv.xy), _Time.y + diff * 2, _WaveAmplitude + diff, _WaveLenght + diff);
-                    wave.x += WaveCalculation(float2(uv.xy), _Time.y + diff * 2, _WaveAmplitude + diff, _WaveLenght + diff).x;
-                }
-                return wave;
-            }
+			    tangent += float3(
+				    -d.x * d.x * (steepness * sin(f)),
+				    d.x * (steepness * cos(f)),
+				    -d.x * d.y * (steepness * sin(f))
+			    );
+			    binormal += float3(
+				    -d.x * d.y * (steepness * sin(f)),
+				    d.y * (steepness * cos(f)),
+				    -d.y * d.y * (steepness * sin(f))
+			    );
+			    return float3(
+				    d.x * (a * cos(f)),
+				    a * sin(f),
+				    d.y * (a * cos(f))
+			    );
+		    }
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
                 
-                o.vertex.y += WaveResult(v.uv).y;
+                float3 gridPoint = v.vertex.xyz;
+                float3 tangent = float3(1, 0, 0);
+			    float3 binormal = float3(0, 0, 1);
+			    float3 p = gridPoint;
+
+                p += GerstnerWave(_WaveA, gridPoint, tangent, binormal);
+                p += GerstnerWave(_WaveB, gridPoint, tangent, binormal);
+                p += GerstnerWave(_WaveC, gridPoint, tangent, binormal);
+                float3 normal = normalize(cross(binormal, tangent));
+
+                o.vertex.xyz += p;
+                o.normal = normal;
 
                 o.worldPos = o.vertex.xyz;
 
@@ -95,7 +95,7 @@ Shader "Unlit/WaterSimV1"
 				o.vertex = mul(UNITY_MATRIX_P, o.vertex);
 
                 o.uv = v.uv;
-                o.normal = UnityObjectToWorldNormal(v.normal);
+                //o.normal = UnityObjectToWorldNormal(normal);
                 return o;
             }
 
@@ -110,7 +110,7 @@ Shader "Unlit/WaterSimV1"
                 float3 halfVec = normalize(_WorldSpaceLightPos0 + viewDir);
                 float specular = max(dot(reflectDir , viewDir), 0.0);
 
-                specular = saturate(pow(specular * diffuse, _Glossiness));
+                specular = pow(specular * diffuse, _Glossiness);
 
                 fixed4 col = albedo * ((diffuse * _LightColor0) + specular + unity_AmbientSky);
                 return col.xyz;
@@ -120,15 +120,7 @@ Shader "Unlit/WaterSimV1"
             {
                 fixed4 col = _WaterColor;
 
-
-                float wave = WaveResult(i.uv.xy);
-                float3 normal = normalize(float3(-ddx(wave), 0, -ddy(wave)));
-
-                normal = 0.5 + 0.5 * normal;
-
-                //normal = UnityObjectToWorldNormal(normal);
-
-                col = float4(calcLight(col, normal.xyz, i.worldPos), _Transparency);
+                col = float4(calcLight(col, i.normal, i.worldPos), _Transparency);
 
                 //col = float4(normal.xy, 0.0, 1.0);
 

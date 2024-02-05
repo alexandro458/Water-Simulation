@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4512722, g: 0.5000861, b: 0.56869906, a: 1}
+  m_IndirectSpecularColor: {r: 0.44935727, g: 0.49943167, b: 0.5757036, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8463144, y: 0.07111763, z: -0.48108545, w: 0.21737316}
-  m_LocalPosition: {x: 5.96, y: 4.01, z: 0}
+  m_LocalRotation: {x: 0.8242953, y: 0.20455486, z: -0.44048133, w: 0.29098228}
+  m_LocalPosition: {x: 125.4, y: 34.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 154.128, y: 60.532997, z: 5.6620026}
+  m_LocalEulerAnglesHint: {x: 138.707, y: 53.906998, z: -6.1799927}
 --- !u!1 &870096549
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 870096549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.82, y: 1.2331244, z: 0.019199371}
+  m_LocalPosition: {x: 7.82, y: 13.31, z: 0.019199371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -336,14 +336,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waveAmplitude: 0
-  waveSpeed: 0.2
-  waveLength: 0.2
   waterColor: {r: 0.27687788, g: 0.71969783, b: 0.9622642, a: 1}
-  waveDirection: {x: 1, y: 0, z: 0, w: 0}
-  wavesDifference: 0.2
-  steepness: 1
-  wavesIterations: 2
+  waveLengthA: 1
+  waveDirectionA: {x: 1, y: 0, z: 0, w: 0}
+  steepnessA: 1
+  waveLengthB: 1
+  waveDirectionB: {x: 1, y: 0, z: 0, w: 0}
+  steepnessB: 1
+  waveLengthC: 1
+  waveDirectionC: {x: 1, y: 0, z: 0, w: 0}
+  steepnessC: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +433,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.104120806, y: -0, z: -0, w: 0.99456465}
-  m_LocalPosition: {x: -0.82, y: 2.22, z: -3.75}
+  m_LocalPosition: {x: -0.82, y: 4.15, z: -11.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -486,8 +488,8 @@ Transform:
   m_GameObject: {fileID: 5388261058389818862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.92, y: 1.09, z: 0}
-  m_LocalScale: {x: 0.092204794, y: 0.092204794, z: 0.092204794}
+  m_LocalPosition: {x: -0.92, y: 9.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -574,14 +576,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waveAmplitude: 0.847
-  waveSpeed: 0.07
-  waveLength: 0.12
-  waterColor: {r: 0.31305623, g: 0.8642506, b: 0.990566, a: 1}
-  waveDirection: {x: 1, y: 1, z: 0, w: 0}
-  wavesDifference: 0.12
-  steepness: 0.222
-  wavesIterations: 6
+  waterColor: {r: 0.21226418, g: 0.8497382, b: 1, a: 1}
+  waveLengthA: 60
+  waveDirectionA: {x: 1, y: 1, z: 0, w: 0}
+  steepnessA: 0.237
+  waveLengthB: 31
+  waveDirectionB: {x: 1, y: 0.6, z: 0, w: 0}
+  steepnessB: 0.274
+  waveLengthC: 18
+  waveDirectionC: {x: 1, y: 1.3, z: 0, w: 0}
+  steepnessC: 0.221
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
