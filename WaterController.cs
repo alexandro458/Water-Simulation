@@ -7,23 +7,25 @@ public class WaterController : MonoBehaviour
 {
     public bool updateStatics = true;
     public Color waterColor = Color.blue;
+    public Color deepWaterColor = Color.blue;
+    public float gradientAmplitude = 50.0f;
 
     [Header("Wave A")]
 
     public float waveLengthA = 1.0f;
-    public Vector4 waveDirectionA = new Vector2(1.0f, 0.0f);
+    public Vector2 waveDirectionA = new Vector2(1.0f, 0.0f);
     [Range(0, 1)]
     public float steepnessA = 1.0f;
 
     [Header("Wave B")]
     public float waveLengthB = 1.0f;
-    public Vector4 waveDirectionB = new Vector2(1.0f, 0.0f);
+    public Vector2 waveDirectionB = new Vector2(1.0f, 0.0f);
     [Range(0, 1)]
     public float steepnessB = 1.0f;
 
     [Header("Wave C")]
     public float waveLengthC = 1.0f;
-    public Vector4 waveDirectionC = new Vector2(1.0f, 0.0f);
+    public Vector2 waveDirectionC = new Vector2(1.0f, 0.0f);
     [Range(0, 1)]
     public float steepnessC = 1.0f;
 
@@ -41,6 +43,8 @@ public class WaterController : MonoBehaviour
         waterMaterial.SetVector("_WaveB", waveB);
         waterMaterial.SetVector("_WaveC", waveC);
         waterMaterial.SetColor("_WaterColor", waterColor);
+        waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
+        waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
     }
 
     private void Update()
@@ -55,6 +59,8 @@ public class WaterController : MonoBehaviour
             waterMaterial.SetVector("_WaveB", waveB);
             waterMaterial.SetVector("_WaveC", waveC);
             waterMaterial.SetColor("_WaterColor", waterColor);
+            waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
+            waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
         }
     }
 }

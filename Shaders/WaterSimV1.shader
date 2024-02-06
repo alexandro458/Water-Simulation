@@ -7,7 +7,7 @@ Shader "Unlit/WaterSimV1"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Opaque"}
         LOD 100
 
         Cull Off
@@ -37,9 +37,13 @@ Shader "Unlit/WaterSimV1"
                 float4 vertex : SV_POSITION;
                 float3 normal : NORMAL;
                 float3 worldPos : TEXCOORD1;
+                float3 modelPos : TEXCOORD2;
             };
 
             float4 _WaterColor;
+            float4 _DeepWaterColor;
+
+            float _GradientAmplitude;
 
             float4 _WaveA, _WaveB, _WaveC;
 
@@ -74,6 +78,7 @@ Shader "Unlit/WaterSimV1"
             v2f vert (appdata v)
             {
                 v2f o;
+                o.modelPos = v.vertex.xyz;
                 o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
                 
                 float3 gridPoint = v.vertex.xyz;
@@ -118,7 +123,10 @@ Shader "Unlit/WaterSimV1"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = _WaterColor;
+                float height = i.worldPos.y;
+                float gradientRange = _GradientAmplitude / 2;
+                float a = (height - (gradientRange * -1)) / (gradientRange - (gradientRange * -1));
+                fixed4 col = lerp(_DeepWaterColor, _WaterColor, a);
 
                 col = float4(calcLight(col, i.normal, i.worldPos), _Transparency);
 
