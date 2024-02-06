@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44935727, g: 0.49943167, b: 0.5757036, a: 1}
+  m_IndirectSpecularColor: {r: 0.44851452, g: 0.49855864, b: 0.57564926, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8242953, y: 0.20455486, z: -0.44048133, w: 0.29098228}
+  m_LocalRotation: {x: 0.817492, y: 0.23024411, z: -0.4311619, w: 0.30462098}
   m_LocalPosition: {x: 125.4, y: 34.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 138.707, y: 53.906998, z: -6.1799927}
+  m_LocalEulerAnglesHint: {x: 135.84601, y: 51.908997, z: -9.123993}
 --- !u!1 &870096549
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,15 +337,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateStatics: 1
   waterColor: {r: 0.27687788, g: 0.71969783, b: 0.9622642, a: 1}
+  deepWaterColor: {r: 0, g: 0, b: 1, a: 1}
+  gradientAmplitude: 50
+  iterations: 0
   waveLengthA: 1
-  waveDirectionA: {x: 1, y: 0, z: 0, w: 0}
+  waveDirectionA: {x: 1, y: 0}
   steepnessA: 1
-  waveLengthB: 1
-  waveDirectionB: {x: 1, y: 0, z: 0, w: 0}
-  steepnessB: 1
-  waveLengthC: 1
-  waveDirectionC: {x: 1, y: 0, z: 0, w: 0}
-  steepnessC: 1
+  directionDiff: 0
+  steepnessDiff: 0
+  waveLengthDiff: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,16 +576,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waterColor: {r: 0.21226418, g: 0.8497382, b: 1, a: 1}
+  waterColor: {r: 0, g: 0.9252539, b: 0.9433962, a: 1}
+  deepWaterColor: {r: 0, g: 0.07460165, b: 1, a: 1}
+  gradientAmplitude: 37.1
+  iterations: 11
   waveLengthA: 60
-  waveDirectionA: {x: 1, y: 1, z: 0, w: 0}
-  steepnessA: 0.237
-  waveLengthB: 31
-  waveDirectionB: {x: 1, y: 0.6, z: 0, w: 0}
-  steepnessB: 0.274
-  waveLengthC: 18
-  waveDirectionC: {x: 1, y: 1.3, z: 0, w: 0}
-  steepnessC: 0.221
+  waveDirectionA: {x: 1.54, y: 1}
+  steepnessA: 0.221
+  directionDiff: 0.2
+  steepnessDiff: 0.005
+  waveLengthDiff: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

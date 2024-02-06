@@ -34,5 +34,5 @@ Material:
     - _WaveSpeed: 20
     - _WaveStrength: 1.67
     m_Colors:
-    - _WaterColor: {r: 0.21226418, g: 0.8497382, b: 1, a: 1}
+    - _WaterColor: {r: 0, g: 0.9252539, b: 0.9433962, a: 1}
   m_BuildTextureStacks: []

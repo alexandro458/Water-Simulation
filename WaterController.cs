@@ -10,6 +10,8 @@ public class WaterController : MonoBehaviour
     public Color deepWaterColor = Color.blue;
     public float gradientAmplitude = 50.0f;
 
+    public int iterations;
+
     [Header("Wave A")]
 
     public float waveLengthA = 1.0f;
@@ -17,17 +19,9 @@ public class WaterController : MonoBehaviour
     [Range(0, 1)]
     public float steepnessA = 1.0f;
 
-    [Header("Wave B")]
-    public float waveLengthB = 1.0f;
-    public Vector2 waveDirectionB = new Vector2(1.0f, 0.0f);
-    [Range(0, 1)]
-    public float steepnessB = 1.0f;
-
-    [Header("Wave C")]
-    public float waveLengthC = 1.0f;
-    public Vector2 waveDirectionC = new Vector2(1.0f, 0.0f);
-    [Range(0, 1)]
-    public float steepnessC = 1.0f;
+    public float directionDiff;
+    public float steepnessDiff;
+    public float waveLengthDiff;
 
     private Material waterMaterial;
 
@@ -36,15 +30,15 @@ public class WaterController : MonoBehaviour
         waterMaterial = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
 
         Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
-        Vector4 waveB = new Vector4(waveDirectionB.x, waveDirectionB.y, steepnessB, waveLengthB);
-        Vector4 waveC = new Vector4(waveDirectionC.x, waveDirectionC.y, steepnessC, waveLengthC);
 
         waterMaterial.SetVector("_WaveA", waveA);
-        waterMaterial.SetVector("_WaveB", waveB);
-        waterMaterial.SetVector("_WaveC", waveC);
         waterMaterial.SetColor("_WaterColor", waterColor);
         waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
         waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
+        waterMaterial.SetFloat("_DirDiff", directionDiff);
+        waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
+        waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
+        waterMaterial.SetInt("_Iterations", iterations);
     }
 
     private void Update()
@@ -52,15 +46,15 @@ public class WaterController : MonoBehaviour
         if (updateStatics)
         {
             Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
-            Vector4 waveB = new Vector4(waveDirectionB.x, waveDirectionB.y, steepnessB, waveLengthB);
-            Vector4 waveC = new Vector4(waveDirectionC.x, waveDirectionC.y, steepnessC, waveLengthC);
 
             waterMaterial.SetVector("_WaveA", waveA);
-            waterMaterial.SetVector("_WaveB", waveB);
-            waterMaterial.SetVector("_WaveC", waveC);
             waterMaterial.SetColor("_WaterColor", waterColor);
             waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
             waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
+            waterMaterial.SetFloat("_DirDiff", directionDiff);
+            waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
+            waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
+            waterMaterial.SetInt("_Iterations", iterations);
         }
     }
 }

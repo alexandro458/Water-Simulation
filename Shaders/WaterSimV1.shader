@@ -44,8 +44,11 @@ Shader "Unlit/WaterSimV1"
             float4 _DeepWaterColor;
 
             float _GradientAmplitude;
+            int _Iterations;
 
-            float4 _WaveA, _WaveB, _WaveC;
+            float _SteepDiff, _LengthDiff, _DirDiff;
+
+            float4 _WaveA;
 
             float3 GerstnerWave (
 			float4 wave, float3 p, inout float3 tangent, inout float3 binormal
@@ -75,23 +78,42 @@ Shader "Unlit/WaterSimV1"
 			    );
 		    }
 
+            float3 WaveSum(float4 wave, float3 pos, int iterations, out float3 normal)
+            {
+                float3 gridPoint = pos;
+                float3 tangent = float3(1, 0, 0);
+			    float3 binormal = float3(0, 0, 1);
+			    float3 p = gridPoint;
+
+                for(int i = 0; i < iterations; i++)
+                {
+                    float2 dir = float2(1.0 - (_DirDiff * i), _DirDiff * i );
+                    float weight = 1.0 - (i / iterations);
+                    float steepness = wave.z - (_SteepDiff * i);
+                    float waveLength = wave.a - (_LengthDiff * i);
+                    float4 fixedWave = float4(dir, steepness, waveLength);
+                    p += GerstnerWave(fixedWave, gridPoint, tangent, binormal);
+                }
+
+                normal = normalize(cross(binormal, tangent));
+
+                return p;
+            }
+
             v2f vert (appdata v)
             {
                 v2f o;
                 o.modelPos = v.vertex.xyz;
                 o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
                 
-                float3 gridPoint = v.vertex.xyz;
-                float3 tangent = float3(1, 0, 0);
-			    float3 binormal = float3(0, 0, 1);
-			    float3 p = gridPoint;
+                
 
-                p += GerstnerWave(_WaveA, gridPoint, tangent, binormal);
-                p += GerstnerWave(_WaveB, gridPoint, tangent, binormal);
-                p += GerstnerWave(_WaveC, gridPoint, tangent, binormal);
-                float3 normal = normalize(cross(binormal, tangent));
+                //p += GerstnerWave(_WaveA, gridPoint, tangent, binormal);
+                //p += GerstnerWave(_WaveB, gridPoint, tangent, binormal);
+                //p += GerstnerWave(_WaveC, gridPoint, tangent, binormal);
+                float3 normal = float3(0, 1, 0);
 
-                o.vertex.xyz += p;
+                o.vertex.xyz += WaveSum(_WaveA, v.vertex.xyz, _Iterations, normal);
                 o.normal = normal;
 
                 o.worldPos = o.vertex.xyz;
