@@ -343,7 +343,7 @@ MonoBehaviour:
   waveLengthA: 1
   waveDirectionA: {x: 1, y: 0}
   steepnessA: 1
-  directionDiff: 0
+  directionDiff: {x: 0, y: 0}
   steepnessDiff: 0
   waveLengthDiff: 0
 --- !u!1 &963194225
@@ -579,13 +579,13 @@ MonoBehaviour:
   waterColor: {r: 0, g: 0.9252539, b: 0.9433962, a: 1}
   deepWaterColor: {r: 0, g: 0.07460165, b: 1, a: 1}
   gradientAmplitude: 37.1
-  iterations: 11
+  iterations: 4
   waveLengthA: 60
-  waveDirectionA: {x: 1.54, y: 1}
-  steepnessA: 0.221
-  directionDiff: 0.2
-  steepnessDiff: 0.005
-  waveLengthDiff: 3
+  waveDirectionA: {x: 1.08, y: 1}
+  steepnessA: 0.258
+  directionDiff: {x: -0.5, y: -0.03}
+  steepnessDiff: 0.05
+  waveLengthDiff: 15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
