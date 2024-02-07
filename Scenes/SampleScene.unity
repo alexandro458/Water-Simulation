@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44851452, g: 0.49855864, b: 0.57564926, a: 1}
+  m_IndirectSpecularColor: {r: 0.44364518, g: 0.4929723, b: 0.5725351, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.817492, y: 0.23024411, z: -0.4311619, w: 0.30462098}
+  m_LocalRotation: {x: 0.7644235, y: 0.36270642, z: -0.37661356, w: 0.37717783}
   m_LocalPosition: {x: 125.4, y: 34.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 135.84601, y: 51.908997, z: -9.123993}
+  m_LocalEulerAnglesHint: {x: 121.80499, y: 34.985, z: -30.871002}
 --- !u!1 &870096549
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,14 +578,14 @@ MonoBehaviour:
   updateStatics: 1
   waterColor: {r: 0, g: 0.9252539, b: 0.9433962, a: 1}
   deepWaterColor: {r: 0, g: 0.07460165, b: 1, a: 1}
-  gradientAmplitude: 37.1
-  iterations: 4
-  waveLengthA: 60
+  gradientAmplitude: 28
+  iterations: 5
+  waveLengthA: 47.5
   waveDirectionA: {x: 1.08, y: 1}
   steepnessA: 0.258
-  directionDiff: {x: -0.5, y: -0.03}
+  directionDiff: {x: -0.5, y: -0.17}
   steepnessDiff: 0.05
-  waveLengthDiff: 15
+  waveLengthDiff: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

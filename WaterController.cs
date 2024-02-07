@@ -45,6 +45,8 @@ public class WaterController : MonoBehaviour
     {
         if (updateStatics)
         {
+            waterMaterial = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
+
             Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
 
             waterMaterial.SetVector("_WaveA", waveA);

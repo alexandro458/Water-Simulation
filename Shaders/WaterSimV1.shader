@@ -106,8 +106,6 @@ Shader "Unlit/WaterSimV1"
                 v2f o;
                 o.modelPos = v.vertex.xyz;
                 o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
-                
-                
 
                 //p += GerstnerWave(_WaveA, gridPoint, tangent, binormal);
                 //p += GerstnerWave(_WaveB, gridPoint, tangent, binormal);
