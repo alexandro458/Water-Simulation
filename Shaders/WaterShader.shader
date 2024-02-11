@@ -6,6 +6,7 @@ Shader "Custom/WaterShader"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _Transparency ("Transparency", Range(0,1)) = 1.0
     }
     SubShader
     {
@@ -13,7 +14,7 @@ Shader "Custom/WaterShader"
         LOD 200
 
         CGPROGRAM
-        #pragma surface surf Standard fullforwardshadows vertex:vert
+        #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
         #pragma target 3.0
 
         sampler2D _MainTex;
@@ -22,11 +23,11 @@ Shader "Custom/WaterShader"
         {
             float2 uv_MainTex;
             float3 worldPos;
-            float3 customNormal;
         };
 
         half _Glossiness;
         half _Metallic;
+        float _Transparency;
         fixed4 _Color;
 
         float4 _WaterColor;
@@ -89,14 +90,13 @@ Shader "Custom/WaterShader"
             return p;
         }
 
-        void vert (inout appdata_full v, out Input o) {
-              UNITY_INITIALIZE_OUTPUT(Input,o);
+        void vert (inout appdata_full v) {
 
               float3 normal = float3(0, 1, 0);
 
-              v.vertex.xyz += WaveSum(_WaveA, v.vertex.xyz, _Iterations, normal);
+              v.vertex.xyz = WaveSum(_WaveA, v.vertex.xyz, _Iterations, normal);
 
-              o.customNormal = normal;
+              v.normal = normal;
           }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
@@ -108,10 +108,9 @@ Shader "Custom/WaterShader"
 
 
             o.Albedo = col.rgb;
-            o.Normal = IN.customNormal;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = col.a;
+            o.Alpha = _Transparency;
         }
         ENDCG
     }
