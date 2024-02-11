@@ -46,7 +46,8 @@ Shader "Unlit/WaterSimV1"
             float _GradientAmplitude;
             int _Iterations;
 
-            float _SteepDiff, _LengthDiff, _DirDiff;
+            float _SteepDiff, _LengthDiff;
+            float2 _DirDiff;
 
             float4 _WaveA;
 
@@ -87,7 +88,7 @@ Shader "Unlit/WaterSimV1"
 
                 for(int i = 0; i < iterations; i++)
                 {
-                    float2 dir = float2(1.0 - (_DirDiff * i), _DirDiff * i );
+                    float2 dir = float2(wave.x + (_DirDiff.x * i), wave.y + (_DirDiff.y * i));
                     float weight = 1.0 - (i / iterations);
                     float steepness = wave.z - (_SteepDiff * i);
                     float waveLength = wave.a - (_LengthDiff * i);
@@ -105,8 +106,6 @@ Shader "Unlit/WaterSimV1"
                 v2f o;
                 o.modelPos = v.vertex.xyz;
                 o.vertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
-                
-                
 
                 //p += GerstnerWave(_WaveA, gridPoint, tangent, binormal);
                 //p += GerstnerWave(_WaveB, gridPoint, tangent, binormal);

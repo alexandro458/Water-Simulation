@@ -19,7 +19,7 @@ public class WaterController : MonoBehaviour
     [Range(0, 1)]
     public float steepnessA = 1.0f;
 
-    public float directionDiff;
+    public Vector2 directionDiff;
     public float steepnessDiff;
     public float waveLengthDiff;
 
@@ -35,7 +35,7 @@ public class WaterController : MonoBehaviour
         waterMaterial.SetColor("_WaterColor", waterColor);
         waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
         waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
-        waterMaterial.SetFloat("_DirDiff", directionDiff);
+        waterMaterial.SetVector("_DirDiff", directionDiff);
         waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
         waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
         waterMaterial.SetInt("_Iterations", iterations);
@@ -45,13 +45,15 @@ public class WaterController : MonoBehaviour
     {
         if (updateStatics)
         {
+            waterMaterial = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
+
             Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
 
             waterMaterial.SetVector("_WaveA", waveA);
             waterMaterial.SetColor("_WaterColor", waterColor);
             waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
             waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
-            waterMaterial.SetFloat("_DirDiff", directionDiff);
+            waterMaterial.SetVector("_DirDiff", directionDiff);
             waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
             waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
             waterMaterial.SetInt("_Iterations", iterations);
