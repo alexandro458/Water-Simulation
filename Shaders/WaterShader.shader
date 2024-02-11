@@ -7,6 +7,8 @@ Shader "Custom/WaterShader"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Transparency ("Transparency", Range(0,1)) = 1.0
+
+        [NoScaleOffset] _FlowMap ("Flow (RG)", 2D) = "black" {}
     }
     SubShader
     {
@@ -18,8 +20,9 @@ Shader "Custom/WaterShader"
         #pragma target 3.0
 
         #include "WavesCalc.cginc"
+        #include "Flow.cginc"
 
-        sampler2D _MainTex;
+        sampler2D _MainTex, _FlowMap;
 
         struct Input
         {
@@ -44,12 +47,17 @@ Shader "Custom/WaterShader"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float height = IN.worldPos.y;
-            float gradientRange = _GradientAmplitude / 2;
-            float a = (height - (gradientRange * -1)) / (gradientRange - (gradientRange * -1));
-            fixed4 col = lerp(_DeepWaterColor, _WaterColor, a);
+            //float height = IN.worldPos.y;
+            //float gradientRange = _GradientAmplitude / 2;
+            //float a = (height - (gradientRange * -1)) / (gradientRange - (gradientRange * -1));
+            //fixed4 col = lerp(_DeepWaterColor, _WaterColor, a);
 
-            o.Albedo = col.rgb;
+            float2 flowVector = tex2D(_FlowMap, IN.uv_MainTex).rg * 2 - 1;
+            float2 uv = FlowUV(IN.uv_MainTex, flowVector, _Time.y);
+
+            fixed4 c = tex2D(_MainTex, uv) * _Color;
+			o.Albedo = c.rgb;
+
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = _Transparency;
