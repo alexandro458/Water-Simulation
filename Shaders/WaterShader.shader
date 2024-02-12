@@ -8,7 +8,7 @@ Shader "Custom/WaterShader"
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Transparency ("Transparency", Range(0,1)) = 1.0
 
-        [NoScaleOffset] _FlowMap ("Flow (RG)", 2D) = "black" {}
+        [NoScaleOffset] _FlowMap ("Flow (RGA)", 2D) = "black" {}
     }
     SubShader
     {
@@ -53,9 +53,16 @@ Shader "Custom/WaterShader"
             //fixed4 col = lerp(_DeepWaterColor, _WaterColor, a);
 
             float2 flowVector = tex2D(_FlowMap, IN.uv_MainTex).rg * 2 - 1;
-            float2 uv = FlowUV(IN.uv_MainTex, flowVector, _Time.y);
+            float noise = tex2D(_FlowMap, IN.uv_MainTex).a;
+			float time = _Time.y + noise;
 
-            fixed4 c = tex2D(_MainTex, uv) * _Color;
+            float3 uvwA = FlowUVW(IN.uv_MainTex, flowVector, time, false);
+            float3 uvwB = FlowUVW(IN.uv_MainTex, flowVector, time, true);
+
+            fixed4 texA = tex2D(_MainTex, uvwA.xy) * uvwA.z;
+            fixed4 texB = tex2D(_MainTex, uvwB.xy) * uvwB.z;
+
+            fixed4 c = (texA + texB) * _Color;
 			o.Albedo = c.rgb;
 
             o.Metallic = _Metallic;
