@@ -9,6 +9,9 @@ Shader "Custom/WaterShader"
         _Transparency ("Transparency", Range(0,1)) = 1.0
 
         [NoScaleOffset] _FlowMap ("Flow (RGA)", 2D) = "black" {}
+
+        _UJump ("U jump per phase", Range(-0.25, 0.25)) = 0.25
+		_VJump ("V jump per phase", Range(-0.25, 0.25)) = 0.25
     }
     SubShader
     {
@@ -39,6 +42,8 @@ Shader "Custom/WaterShader"
         float4 _DeepWaterColor;
         float _GradientAmplitude;
 
+        float _UJump, _VJump;
+
         void vert (inout appdata_full v) {        
               float3 normal = float3(0, 1, 0);
               v.vertex.xyz = WaveSum(_WaveA, v.vertex.xyz, _Iterations, normal);
@@ -56,8 +61,10 @@ Shader "Custom/WaterShader"
             float noise = tex2D(_FlowMap, IN.uv_MainTex).a;
 			float time = _Time.y + noise;
 
-            float3 uvwA = FlowUVW(IN.uv_MainTex, flowVector, time, false);
-            float3 uvwB = FlowUVW(IN.uv_MainTex, flowVector, time, true);
+            float2 jump = float2(_UJump, _VJump);
+
+            float3 uvwA = FlowUVW(IN.uv_MainTex, flowVector, jump, time, false);
+            float3 uvwB = FlowUVW(IN.uv_MainTex, flowVector, jump, time, true);
 
             fixed4 texA = tex2D(_MainTex, uvwA.xy) * uvwA.z;
             fixed4 texB = tex2D(_MainTex, uvwB.xy) * uvwB.z;
