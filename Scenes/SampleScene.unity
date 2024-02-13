@@ -245,6 +245,7 @@ MonoBehaviour:
   waterColor: {r: 0.27687788, g: 0.71969783, b: 0.9622642, a: 1}
   deepWaterColor: {r: 0, g: 0, b: 1, a: 1}
   gradientAmplitude: 50
+  colorStrength: 0
   iterations: 0
   waveLengthA: 1
   waveDirectionA: {x: 1, y: 0}
@@ -576,9 +577,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waterColor: {r: 0, g: 0.9252539, b: 0.9433962, a: 1}
-  deepWaterColor: {r: 0, g: 0.07460165, b: 1, a: 1}
-  gradientAmplitude: 38.4
+  waterColor: {r: 0, g: 0.43419698, b: 0.4433962, a: 1}
+  deepWaterColor: {r: 0, g: 0.028819853, b: 0.38679248, a: 1}
+  gradientAmplitude: 18.1
+  colorStrength: 0.226
   iterations: 3
   waveLengthA: 60
   waveDirectionA: {x: 0, y: 0.4}

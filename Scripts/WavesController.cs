@@ -9,6 +9,8 @@ public class WavesController : MonoBehaviour
     public Color waterColor = Color.blue;
     public Color deepWaterColor = Color.blue;
     public float gradientAmplitude = 50.0f;
+    [Range(0, 1)]
+    public float colorStrength;
 
     public int iterations;
 
@@ -38,6 +40,7 @@ public class WavesController : MonoBehaviour
         waterMaterial.SetVector("_DirDiff", directionDiff);
         waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
         waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
+        waterMaterial.SetFloat("_ColorStrength", colorStrength);
         waterMaterial.SetInt("_Iterations", iterations);
     }
 
@@ -54,6 +57,7 @@ public class WavesController : MonoBehaviour
             waterMaterial.SetVector("_DirDiff", directionDiff);
             waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
             waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
+            waterMaterial.SetFloat("_ColorStrength", colorStrength);
             waterMaterial.SetInt("_Iterations", iterations);
         }
     }
