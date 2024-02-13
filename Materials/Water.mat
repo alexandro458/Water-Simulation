@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2bb5e7940d64e4510b915a23c753a3f3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -43,18 +43,18 @@ Material:
     m_Floats:
     - _FlowOffset: -0.5
     - _FlowStrength: 0.1
-    - _Glossiness: 0.832
-    - _HeightScale: 0.15
+    - _Glossiness: 0.862
+    - _HeightScale: 0.1
     - _HeightScaleModulated: 0
     - _Metallic: 0
     - _Speed: 0.5
-    - _Tiling: 4.89
+    - _Tiling: 3
     - _Transparency: 1
-    - _UJump: 0.028
-    - _VJump: -0.011
+    - _UJump: 0.234
+    - _VJump: 0.208
     - _WaveSpeed: 20
     - _WaveStrength: 1.67
     m_Colors:
     - _Color: {r: 0.3724635, g: 0.5945529, b: 0.8490566, a: 1}
-    - _WaterColor: {r: 0, g: 0.43419698, b: 0.4433962, a: 1}
+    - _WaterColor: {r: 0, g: 0.33962262, b: 0.15754505, a: 1}
   m_BuildTextureStacks: []

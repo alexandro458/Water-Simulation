@@ -242,10 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waterColor: {r: 0.27687788, g: 0.71969783, b: 0.9622642, a: 1}
-  deepWaterColor: {r: 0, g: 0, b: 1, a: 1}
-  gradientAmplitude: 50
-  colorStrength: 0
   iterations: 0
   waveLengthA: 1
   waveDirectionA: {x: 1, y: 0}
@@ -506,6 +502,7 @@ GameObject:
   - component: {fileID: 4723469306826155860}
   - component: {fileID: 8512640967811688689}
   - component: {fileID: 5892413184044342331}
+  - component: {fileID: 8512640967811688691}
   - component: {fileID: 8512640967811688690}
   m_Layer: 0
   m_Name: 50sub
@@ -577,10 +574,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waterColor: {r: 0, g: 0.43419698, b: 0.4433962, a: 1}
-  deepWaterColor: {r: 0, g: 0.028819853, b: 0.38679248, a: 1}
-  gradientAmplitude: 18.1
-  colorStrength: 0.226
   iterations: 3
   waveLengthA: 60
   waveDirectionA: {x: 0, y: 0.4}
@@ -588,6 +581,33 @@ MonoBehaviour:
   directionDiff: {x: -0.48, y: 0.03}
   steepnessDiff: 0.01
   waveLengthDiff: 15
+--- !u!114 &8512640967811688691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5388261058389818862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5df867bed6a5814bb9375eb189403f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateStatics: 1
+  waterColor: {r: 0, g: 0.33962262, b: 0.15754505, a: 1}
+  deepWaterColor: {r: 0, g: 0, b: 0.3018868, a: 1}
+  gradientAmplitude: 23.2
+  flowMap: {fileID: 2800000, guid: 5126f3304d2084d7e824deb2e79c69ae, type: 3}
+  derivHeightMap: {fileID: 2800000, guid: 83354cabd507a40e1bed911b92f64ba3, type: 3}
+  uJump: 0.234
+  vJump: 0.208
+  tiling: 3
+  speed: 0.5
+  flowStrength: 0.1
+  flowOffset: -0.5
+  heightScale: 0.1
+  heightScaleModulated: 0
+  useGerstnerNormal: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

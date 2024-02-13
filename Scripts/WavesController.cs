@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class WavesController : MonoBehaviour
 {
     public bool updateStatics = true;
-    public Color waterColor = Color.blue;
-    public Color deepWaterColor = Color.blue;
-    public float gradientAmplitude = 50.0f;
-    [Range(0, 1)]
-    public float colorStrength;
 
     public int iterations;
 
@@ -34,13 +27,9 @@ public class WavesController : MonoBehaviour
         Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
 
         waterMaterial.SetVector("_WaveA", waveA);
-        waterMaterial.SetColor("_WaterColor", waterColor);
-        waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
-        waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
         waterMaterial.SetVector("_DirDiff", directionDiff);
         waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
         waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
-        waterMaterial.SetFloat("_ColorStrength", colorStrength);
         waterMaterial.SetInt("_Iterations", iterations);
     }
 
@@ -51,13 +40,9 @@ public class WavesController : MonoBehaviour
             Vector4 waveA = new Vector4(waveDirectionA.x, waveDirectionA.y, steepnessA, waveLengthA);
 
             waterMaterial.SetVector("_WaveA", waveA);
-            waterMaterial.SetColor("_WaterColor", waterColor);
-            waterMaterial.SetColor("_DeepWaterColor", deepWaterColor);
-            waterMaterial.SetFloat("_GradientAmplitude", gradientAmplitude);
             waterMaterial.SetVector("_DirDiff", directionDiff);
             waterMaterial.SetFloat("_SteepDiff", steepnessDiff);
             waterMaterial.SetFloat("_LengthDiff", waveLengthDiff);
-            waterMaterial.SetFloat("_ColorStrength", colorStrength);
             waterMaterial.SetInt("_Iterations", iterations);
         }
     }
