@@ -15,6 +15,8 @@ public class TextureController: MonoBehaviour
     public float uJump, vJump;
     public float tiling, speed, flowStrength, flowOffset;
     public float heightScale, heightScaleModulated;
+    [Range(-1, 1)]
+    public float deepRugosity;
 
     public bool useGerstnerNormal;
 
@@ -39,6 +41,7 @@ public class TextureController: MonoBehaviour
         waterMaterial.SetFloat("_FlowOffset", flowOffset);
         waterMaterial.SetFloat("_HeightScale", heightScale);
         waterMaterial.SetFloat("_HeightScaleModulated", heightScaleModulated);
+        waterMaterial.SetFloat("_DeepRugosity", deepRugosity);
 
         waterMaterial.SetInt("_UseGerstnerNormal", useGerstnerNormal ? 1 : 0);
     }
@@ -62,6 +65,7 @@ public class TextureController: MonoBehaviour
             waterMaterial.SetFloat("_FlowOffset", flowOffset);
             waterMaterial.SetFloat("_HeightScale", heightScale);
             waterMaterial.SetFloat("_HeightScaleModulated", heightScaleModulated);
+            waterMaterial.SetFloat("_DeepRugosity", deepRugosity);
 
             waterMaterial.SetInt("_UseGerstnerNormal", useGerstnerNormal ? 0 : 1);
         }

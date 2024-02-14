@@ -25,15 +25,18 @@ Shader "Custom/WaterShader"
         {
             float2 uv_MainTex;
             float3 worldPos;
+            float3 modelPosition;
         };
 
         half _Glossiness;
         half _Metallic;
         float _Transparency;
 
-        void vert (inout appdata_full v) {        
+        void vert (inout appdata_full v, out Input o) {
+              UNITY_INITIALIZE_OUTPUT(Input, o);
               float3 normal = float3(0, 1, 0);
               v.vertex.xyz = WaveSum(_WaveA, v.vertex.xyz, _Iterations, normal);
+              o.modelPosition = v.vertex.xyz;
               v.normal = normal;
           }
 
@@ -42,7 +45,7 @@ Shader "Custom/WaterShader"
             
             float3 normal = float3(0, 1, 0);
 
-			o.Albedo = WaveColor(IN.uv_MainTex, IN.worldPos, o.Normal, normal);
+			o.Albedo = WaveColor(IN.uv_MainTex, IN.modelPosition, o.Normal, normal);
             o.Normal = normal;
 
             o.Metallic = _Metallic;

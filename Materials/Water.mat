@@ -41,20 +41,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FlowOffset: -0.5
-    - _FlowStrength: 0.1
-    - _Glossiness: 0.862
-    - _HeightScale: 0.1
+    - _FlowOffset: -0.55
+    - _FlowStrength: 0.14
+    - _Glossiness: 0.88
+    - _HeightScale: 0.17
     - _HeightScaleModulated: 0
     - _Metallic: 0
-    - _Speed: 0.5
-    - _Tiling: 3
+    - _Speed: 0.6
+    - _Tiling: 4
     - _Transparency: 1
-    - _UJump: 0.234
+    - _UJump: 0.247
     - _VJump: 0.208
     - _WaveSpeed: 20
     - _WaveStrength: 1.67
     m_Colors:
     - _Color: {r: 0.3724635, g: 0.5945529, b: 0.8490566, a: 1}
-    - _WaterColor: {r: 0, g: 0.33962262, b: 0.15754505, a: 1}
+    - _WaterColor: {r: 0, g: 0.122641504, b: 0.011149217, a: 1}
   m_BuildTextureStacks: []

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4513167, g: 0.50022346, b: 0.56916434, a: 1}
+  m_IndirectSpecularColor: {r: 0.43839687, g: 0.47801453, b: 0.5210464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -469,13 +469,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927435361}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26103425, y: -0.5044499, z: 0.013350935, w: 0.8229296}
+  m_LocalRotation: {x: 0.18516497, y: -0.5369569, z: -0.10606223, w: 0.8161753}
   m_LocalPosition: {x: 0, y: 26.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 26.302, y: -66.687, z: -15.62}
+  m_LocalEulerAnglesHint: {x: 10.857, y: -68.823, z: -22.257}
 --- !u!4 &4723469306826155860
 Transform:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ Transform:
   m_GameObject: {fileID: 5388261058389818862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.92, y: 9.2, z: 0}
+  m_LocalPosition: {x: -0.92, y: 23.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -594,19 +594,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waterColor: {r: 0, g: 0.33962262, b: 0.15754505, a: 1}
-  deepWaterColor: {r: 0, g: 0, b: 0.3018868, a: 1}
-  gradientAmplitude: 23.2
+  waterColor: {r: 0, g: 0.122641504, b: 0.011149217, a: 1}
+  deepWaterColor: {r: 0.000533999, g: 0.11320752, b: 0.06939004, a: 1}
+  gradientAmplitude: 9.4
   flowMap: {fileID: 2800000, guid: 5126f3304d2084d7e824deb2e79c69ae, type: 3}
   derivHeightMap: {fileID: 2800000, guid: 83354cabd507a40e1bed911b92f64ba3, type: 3}
-  uJump: 0.234
+  uJump: 0.247
   vJump: 0.208
-  tiling: 3
-  speed: 0.5
-  flowStrength: 0.1
-  flowOffset: -0.5
-  heightScale: 0.1
+  tiling: 4
+  speed: 0.6
+  flowStrength: 0.14
+  flowOffset: -0.55
+  heightScale: 0.17
   heightScaleModulated: 0
+  deepRugosity: 0.07
   useGerstnerNormal: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

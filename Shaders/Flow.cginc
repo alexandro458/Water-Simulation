@@ -29,14 +29,14 @@ float4 _DeepWaterColor;
 float _GradientAmplitude;
 
 float _UJump, _VJump, _Tiling, _Speed, _FlowStrength, _FlowOffset;
-float _HeightScale, _HeightScaleModulated;
+float _HeightScale, _HeightScaleModulated, _DeepRugosity;
 
 int _UseGerstnerNormal;
 
-float3 WaveColor(float2 uv, float3 worldPos, float3 preNormal, out float3 normal)
+float3 WaveColor(float2 uv, float3 modelPos, float3 preNormal, out float3 normal)
 {
 
-	float height = worldPos.y;
+	float height = modelPos.y;
     float gradientRange = _GradientAmplitude / 2;
     float a = (height - (gradientRange * -1)) / (gradientRange - (gradientRange * -1));
     fixed4 col = lerp(_DeepWaterColor, _WaterColor, a);
@@ -63,8 +63,13 @@ float3 WaveColor(float2 uv, float3 worldPos, float3 preNormal, out float3 normal
 		(uvwB.z * finalHeightScale);
 
 
-	if(_UseGerstnerNormal == 0){ normal = normalize((float3(-(dhA.xy + dhB.xy), 1)) + preNormal);}
-	else{normal = normalize(float3(-(dhA.xy + dhB.xy), 1));}
+	if(_UseGerstnerNormal == 0)
+	{ 
+	float3 tipNormal = normalize((float3(-(dhA.xy + dhB.xy), 1)) + preNormal);
+	float3 gerstnerNormal = preNormal;
+	normal = lerp(gerstnerNormal, tipNormal, saturate(a + _DeepRugosity));
+	}
+	else { normal = normalize(float3(-(dhA.xy + dhB.xy), 1)); }
 
 	return col.rgb;
 }
