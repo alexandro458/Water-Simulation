@@ -335,13 +335,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.104120806, y: -0, z: -0, w: 0.99456465}
-  m_LocalPosition: {x: -0.82, y: 4.15, z: -11.42}
+  m_LocalRotation: {x: 0.16502818, y: -0, z: -0, w: 0.98628885}
+  m_LocalPosition: {x: -0.82, y: 46.1, z: -69.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 11.953, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.998, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,9 +594,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateStatics: 1
-  waterColor: {r: 0, g: 0.122641504, b: 0.011149217, a: 1}
-  deepWaterColor: {r: 0.000533999, g: 0.11320752, b: 0.06939004, a: 1}
-  gradientAmplitude: 9.4
+  waterColor: {r: 0, g: 0.122641504, b: 0.012775166, a: 1}
+  deepWaterColor: {r: 0, g: 0.03773582, b: 0.015615739, a: 1}
+  gradientAmplitude: 7.14
   flowMap: {fileID: 2800000, guid: 5126f3304d2084d7e824deb2e79c69ae, type: 3}
   derivHeightMap: {fileID: 2800000, guid: 83354cabd507a40e1bed911b92f64ba3, type: 3}
   uJump: 0.247
@@ -605,10 +605,11 @@ MonoBehaviour:
   speed: 0.6
   flowStrength: 0.14
   flowOffset: -0.55
-  heightScale: 0.17
+  heightScale: 0.1
   heightScaleModulated: 0
-  deepRugosity: 0.07
+  gradientOffset: 0.23
   useGerstnerNormal: 1
+  debugGradient: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

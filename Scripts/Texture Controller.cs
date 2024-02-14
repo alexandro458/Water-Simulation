@@ -16,9 +16,10 @@ public class TextureController: MonoBehaviour
     public float tiling, speed, flowStrength, flowOffset;
     public float heightScale, heightScaleModulated;
     [Range(-1, 1)]
-    public float deepRugosity;
+    public float gradientOffset;
 
     public bool useGerstnerNormal;
+    public bool debugGradient = false;
 
     private Material waterMaterial;
 
@@ -41,9 +42,10 @@ public class TextureController: MonoBehaviour
         waterMaterial.SetFloat("_FlowOffset", flowOffset);
         waterMaterial.SetFloat("_HeightScale", heightScale);
         waterMaterial.SetFloat("_HeightScaleModulated", heightScaleModulated);
-        waterMaterial.SetFloat("_DeepRugosity", deepRugosity);
+        waterMaterial.SetFloat("_GradientOffset", gradientOffset);
 
         waterMaterial.SetInt("_UseGerstnerNormal", useGerstnerNormal ? 1 : 0);
+        waterMaterial.SetInt("_DegubGradient", debugGradient ? 1 : 0);
     }
 
     private void Update()
@@ -65,9 +67,10 @@ public class TextureController: MonoBehaviour
             waterMaterial.SetFloat("_FlowOffset", flowOffset);
             waterMaterial.SetFloat("_HeightScale", heightScale);
             waterMaterial.SetFloat("_HeightScaleModulated", heightScaleModulated);
-            waterMaterial.SetFloat("_DeepRugosity", deepRugosity);
+            waterMaterial.SetFloat("_GradientOffset", gradientOffset);
 
-            waterMaterial.SetInt("_UseGerstnerNormal", useGerstnerNormal ? 0 : 1);
+            waterMaterial.SetInt("_UseGerstnerNormal", useGerstnerNormal ? 1 : 0);
+            waterMaterial.SetInt("_DegubGradient", debugGradient ? 1 : 0);
         }
     }
 }

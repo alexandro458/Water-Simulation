@@ -26,12 +26,12 @@ sampler2D  _FlowMap, _DerivHeightMap;
 
 float4 _WaterColor;
 float4 _DeepWaterColor;
-float _GradientAmplitude;
+float _GradientAmplitude, _GradientOffset;
 
 float _UJump, _VJump, _Tiling, _Speed, _FlowStrength, _FlowOffset;
-float _HeightScale, _HeightScaleModulated, _DeepRugosity;
+float _HeightScale, _HeightScaleModulated;
 
-int _UseGerstnerNormal;
+int _UseGerstnerNormal, _DegubGradient;
 
 float3 WaveColor(float2 uv, float3 modelPos, float3 preNormal, out float3 normal)
 {
@@ -39,6 +39,7 @@ float3 WaveColor(float2 uv, float3 modelPos, float3 preNormal, out float3 normal
 	float height = modelPos.y;
     float gradientRange = _GradientAmplitude / 2;
     float a = (height - (gradientRange * -1)) / (gradientRange - (gradientRange * -1));
+	a = saturate(a + _GradientOffset);
     fixed4 col = lerp(_DeepWaterColor, _WaterColor, a);
 
     float3 flow = tex2D(_FlowMap, uv).rgb;
@@ -63,13 +64,15 @@ float3 WaveColor(float2 uv, float3 modelPos, float3 preNormal, out float3 normal
 		(uvwB.z * finalHeightScale);
 
 
-	if(_UseGerstnerNormal == 0)
+	if(_UseGerstnerNormal == 1)
 	{ 
 	float3 tipNormal = normalize((float3(-(dhA.xy + dhB.xy), 1)) + preNormal);
 	float3 gerstnerNormal = preNormal;
-	normal = lerp(gerstnerNormal, tipNormal, saturate(a + _DeepRugosity));
+	normal = lerp(gerstnerNormal, tipNormal, a);
 	}
 	else { normal = normalize(float3(-(dhA.xy + dhB.xy), 1)); }
+
+	if(_DegubGradient == 1) { return a.xxx; }
 
 	return col.rgb;
 }

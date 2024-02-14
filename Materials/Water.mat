@@ -44,7 +44,7 @@ Material:
     - _FlowOffset: -0.55
     - _FlowStrength: 0.14
     - _Glossiness: 0.88
-    - _HeightScale: 0.17
+    - _HeightScale: 0.1
     - _HeightScaleModulated: 0
     - _Metallic: 0
     - _Speed: 0.6
@@ -56,5 +56,5 @@ Material:
     - _WaveStrength: 1.67
     m_Colors:
     - _Color: {r: 0.3724635, g: 0.5945529, b: 0.8490566, a: 1}
-    - _WaterColor: {r: 0, g: 0.122641504, b: 0.011149217, a: 1}
+    - _WaterColor: {r: 0, g: 0.122641504, b: 0.012775166, a: 1}
   m_BuildTextureStacks: []
