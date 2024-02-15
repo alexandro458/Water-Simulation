@@ -44,12 +44,12 @@ Material:
     - _FlowOffset: -0.55
     - _FlowStrength: 0.14
     - _Glossiness: 0.88
-    - _HeightScale: 0.1
+    - _HeightScale: 0.13
     - _HeightScaleModulated: 0
     - _Metallic: 0
     - _Speed: 0.6
     - _Tiling: 4
-    - _Transparency: 1
+    - _Transparency: 0.892
     - _UJump: 0.247
     - _VJump: 0.208
     - _WaveSpeed: 20
