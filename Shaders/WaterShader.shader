@@ -9,11 +9,11 @@ Shader "Custom/WaterShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         LOD 200
 
         CGPROGRAM
-        #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
+        #pragma surface surf Standard alpha vertex:vert
         #pragma target 3.0
 
         #include "WavesCalc.cginc"
@@ -54,5 +54,4 @@ Shader "Custom/WaterShader"
         }
         ENDCG
     }
-    FallBack "Diffuse"
 }
