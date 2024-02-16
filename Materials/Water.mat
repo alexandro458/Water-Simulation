@@ -47,6 +47,7 @@ Material:
     - _HeightScale: 0.13
     - _HeightScaleModulated: 0
     - _Metallic: 0
+    - _Scale: 60
     - _Speed: 0.6
     - _Tiling: 4
     - _Transparency: 0.892

@@ -6,6 +6,7 @@ Shader "Custom/WaterShader"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Transparency ("Transparency", Range(0,1)) = 1.0
+        _Scale ("Transparency", Float) = 1.0
     }
     SubShader
     {
@@ -18,6 +19,7 @@ Shader "Custom/WaterShader"
 
         #include "WavesCalc.cginc"
         #include "Flow.cginc"
+        #include "Transparency.cginc"
 
         sampler2D _MainTex;
 
@@ -26,11 +28,14 @@ Shader "Custom/WaterShader"
             float2 uv_MainTex;
             float3 worldPos;
             float3 modelPosition;
+            float4 screenPos;
         };
 
         half _Glossiness;
         half _Metallic;
         float _Transparency;
+
+        float _Scale;
 
         void vert (inout appdata_full v, out Input o) {
               UNITY_INITIALIZE_OUTPUT(Input, o);
@@ -45,12 +50,15 @@ Shader "Custom/WaterShader"
             
             float3 normal = float3(0, 1, 0);
 
-			o.Albedo = WaveColor(IN.uv_MainTex, IN.modelPosition, o.Normal, normal);
+            float3 col = WaveColor(IN.uv_MainTex, IN.modelPosition, o.Normal, normal);
+
+			o.Albedo = ColorBelowWater(IN.screenPos, _Scale);
+			o.Alpha = 1;
+
             o.Normal = normal;
 
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = _Transparency;
         }
         ENDCG
     }
