@@ -6,12 +6,16 @@ Shader "Custom/WaterShader"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Transparency ("Transparency", Range(0,1)) = 1.0
-        _Scale ("Transparency", Float) = 1.0
+
+        _WaterFogColor ("Water Fog Color", Color) = (0, 0, 0, 0)
+		_WaterFogDensity ("Water Fog Density", Range(0, 2)) = 0.1
     }
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         LOD 200
+
+        GrabPass {"_WaterBackground"}
 
         CGPROGRAM
         #pragma surface surf Standard alpha vertex:vert
