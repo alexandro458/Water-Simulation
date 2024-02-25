@@ -5,10 +5,6 @@ Shader "Custom/WaterShader"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _Transparency ("Transparency", Range(0,1)) = 1.0
-
-        _WaterFogColor ("Water Fog Color", Color) = (0, 0, 0, 0)
-		_WaterFogDensity ("Water Fog Density", Range(0, 2)) = 0.1
     }
     SubShader
     {
@@ -56,10 +52,9 @@ Shader "Custom/WaterShader"
 
 			o.Albedo = col;
             o.Alpha = _Transparency;
-
-			o.Emission = ColorBelowWater(IN.screenPos) * (1 - _Transparency);
-
             o.Normal = normal;
+
+			o.Emission = ColorBelowWater(IN.screenPos, o.Normal) * (1 - _Transparency);     
 
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
