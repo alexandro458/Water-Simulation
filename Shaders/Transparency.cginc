@@ -7,7 +7,7 @@ float4 _CameraDepthTexture_TexelSize;
 float3 _WaterFogColor;
 float _WaterFogDensity;
 
-float3 ColorBelowWater (float4 screenPos, float scale) {
+float3 ColorBelowWater (float4 screenPos) {
 	float2 uv = screenPos.xy / screenPos.w;
 
 	#if UNITY_UV_STARTS_AT_TOP

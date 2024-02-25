@@ -47,15 +47,17 @@ Material:
     - _HeightScale: 0.13
     - _HeightScaleModulated: 0
     - _Metallic: 0
-    - _Scale: 60
+    - _Scale: 60.03
     - _Speed: 0.6
     - _Tiling: 4
     - _Transparency: 0.892
     - _UJump: 0.247
     - _VJump: 0.208
+    - _WaterFogDensity: 0.05
     - _WaveSpeed: 20
     - _WaveStrength: 1.67
     m_Colors:
     - _Color: {r: 0.3724635, g: 0.5945529, b: 0.8490566, a: 1}
     - _WaterColor: {r: 0, g: 0.122641504, b: 0.012775166, a: 1}
+    - _WaterFogColor: {r: 0, g: 0.017429478, b: 0.05660379, a: 0}
   m_BuildTextureStacks: []

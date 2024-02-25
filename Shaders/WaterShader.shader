@@ -18,7 +18,7 @@ Shader "Custom/WaterShader"
         GrabPass {"_WaterBackground"}
 
         CGPROGRAM
-        #pragma surface surf Standard alpha vertex:vert
+        #pragma surface surf Standard alpha vertex:vert finalcolor:ResetAlpha
         #pragma target 3.0
 
         #include "WavesCalc.cginc"
@@ -39,8 +39,6 @@ Shader "Custom/WaterShader"
         half _Metallic;
         float _Transparency;
 
-        float _Scale;
-
         void vert (inout appdata_full v, out Input o) {
               UNITY_INITIALIZE_OUTPUT(Input, o);
               float3 normal = float3(0, 1, 0);
@@ -56,14 +54,20 @@ Shader "Custom/WaterShader"
 
             float3 col = WaveColor(IN.uv_MainTex, IN.modelPosition, o.Normal, normal);
 
-			o.Albedo = ColorBelowWater(IN.screenPos, _Scale);
-			o.Alpha = 1;
+			o.Albedo = col;
+            o.Alpha = _Transparency;
+
+			o.Emission = ColorBelowWater(IN.screenPos) * (1 - _Transparency);
 
             o.Normal = normal;
 
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
         }
+
+        void ResetAlpha (Input IN, SurfaceOutputStandard o, inout fixed4 color) {
+			color.a = 1;
+		}
         ENDCG
     }
 }
