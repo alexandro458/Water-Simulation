@@ -38,7 +38,14 @@ Shader "Custom/WaterShader"
         void vert (inout appdata_full v, out Input o) {
               UNITY_INITIALIZE_OUTPUT(Input, o);
               float3 normal = float3(0, 1, 0);
-              v.vertex.xyz = WaveSum(_WaveA, v.vertex.xyz, _Iterations, normal);
+
+              float3 worldVertex = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0));
+
+              float3 gerstnerPoint = WaveSum(_WaveA, worldVertex, _Iterations, normal);
+
+              gerstnerPoint = mul(unity_WorldToObject, float4(gerstnerPoint, 1.0));
+              v.vertex.xyz = gerstnerPoint;
+
               o.modelPosition = v.vertex.xyz;
               v.normal = normal;
           }
