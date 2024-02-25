@@ -52,6 +52,8 @@ public class TextureController: MonoBehaviour
     {
         if (updateStatics)
         {
+            waterMaterial = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
+
             waterMaterial.SetTexture("_FlowMap", flowMap);
             waterMaterial.SetTexture("_DerivHeightMap", derivHeightMap);
 

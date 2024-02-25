@@ -33,6 +33,8 @@ public class TransparencyController: MonoBehaviour
     {
         if (updateStatics)
         {
+            waterMaterial = gameObject.GetComponent<MeshRenderer>().sharedMaterial;
+
             waterMaterial.SetColor("_WaterFogColor", waterFogColor);
 
             waterMaterial.SetFloat("_Transparency", transparency);
