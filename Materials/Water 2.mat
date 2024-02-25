@@ -41,16 +41,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FlowOffset: -0.55
-    - _FlowStrength: 0.14
-    - _Glossiness: 0.928
-    - _HeightScale: 0.11
+    - _FlowOffset: -0.56
+    - _FlowStrength: 0.16
+    - _Glossiness: 0.862
+    - _HeightScale: 0.19
     - _HeightScaleModulated: 0
     - _Metallic: 0
     - _RefractionStrength: 5.89
     - _Scale: 60.03
     - _Speed: 0.6
-    - _Tiling: 4
+    - _Tiling: 6.05
     - _Transparency: 1
     - _UJump: 0.247
     - _VJump: 0.208

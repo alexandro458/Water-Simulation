@@ -1021,10 +1021,10 @@ MonoBehaviour:
   iterations: 10
   waveLengthA: 200
   waveDirectionA: {x: 0, y: 0.4}
-  steepnessA: 0.111
-  directionDiff: {x: -0.04, y: -0.04}
+  steepnessA: 0.116
+  directionDiff: {x: -0.02, y: -0.25}
   steepnessDiff: 0.01
-  waveLengthDiff: 11.4
+  waveLengthDiff: 11.3
 --- !u!114 &950340920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,13 +1045,13 @@ MonoBehaviour:
   derivHeightMap: {fileID: 2800000, guid: 83354cabd507a40e1bed911b92f64ba3, type: 3}
   uJump: 0.247
   vJump: 0.208
-  tiling: 4
+  tiling: 6.05
   speed: 0.6
-  flowStrength: 0.14
-  flowOffset: -0.55
-  heightScale: 0.11
+  flowStrength: 0.16
+  flowOffset: -0.56
+  heightScale: 0.19
   heightScaleModulated: 0
-  gradientOffset: 0.25
+  gradientOffset: -0.25
   useGerstnerNormal: 1
   debugGradient: 0
 --- !u!23 &950340921
@@ -1113,8 +1113,8 @@ Transform:
   m_GameObject: {fileID: 950340917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.2, y: 87.5, z: 550.6}
-  m_LocalScale: {x: 5.830199, y: 5.830199, z: 5.830199}
+  m_LocalPosition: {x: -28.2, y: 87.5, z: 879}
+  m_LocalScale: {x: 12.382583, y: 12.382583, z: 12.382583}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
